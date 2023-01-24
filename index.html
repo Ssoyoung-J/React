@@ -10,20 +10,22 @@
     <script src="https://unpkg.com/@babel/standalone@7.20.13/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
-        function Title(){
-            return (
-                <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>Hello I'm a title</h3>
-                );
-            }
-        const Button = ()=>(<button style={{
-            backgroundColor: "tomato",
-        }} onClick={() => console.log("im clicked")}>Click me</button>);
+        let counter = 0;
+        function countUp(){
+            counter = counter + 1;
+            // counter가 올라갈 때 새로 렌더링을 해주기 위해 render() 실행
+            render();
+        }
+        function render(){
+            ReactDOM.render(<Container />, root)
+        }
         const Container =()=> (
             <div>
-                <Title />
-                <Button />
+                <h3>Total Clicks: {counter}</h3>
+                <button onClick={countUp}>Click me</button>
             </div>
         )
-        ReactDOM.render(<Container />, root)
+        // 처음 렌더링할 때 실행
+        render();
     </script>
 </html>
