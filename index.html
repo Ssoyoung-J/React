@@ -5,27 +5,29 @@
 
         </div>
     </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.20.13/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById("root");
         function App(){
-            // state의 값이 바뀌면 React가 컴포넌트를 refresh 해줌
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-            //  이전 값 활용하는 setCounter
-            //  setCounter(counter + 1);
-
-            //  현재 state를 기반으로 계산하는 setCounter
-                setCounter((current) => current + 1);
+            const [minutes, setMinutes] = React.useState(0);
+            const onChange = (event) => {
+                setMinutes(event.target.value);
             };
-            console.log("rendered");
-            console.log(counter);
             return (
                 <div>
-                    <h3>Total Clicks: {counter}</h3>
-                    <button onClick={onClick}>Click me</button>
+                    <h1 className="hi">Super Converter</h1>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input
+                     value={minutes}
+                      id="minutes"
+                      placeholder="Minutes"
+                      type="number"
+                      onChange={onChange} />
+                    <h4>You want to convert {minutes}</h4>
+                    <label htmlFor="hours">Hours</label>
+                    <input id="hours" placeholder="Hours" type="number" />
                 </div>
             );
         }
